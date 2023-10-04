@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+      
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            text-align: center;
+        }
+
+        .calculator {
+            width: 200px;
+            margin: 100px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .result {
+            font-size: 24px;
+            border: none;
+            width: 100%;
+            text-align: right;
+            padding: 10px;
+            outline: none;
+        }
+
+        .button {
+            width: auto;
+            height: auto;
+            font-size: 15px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .button:hover {
+            background-color: #ddd;
+        }
+
+        .operator {
+            background-color: #ff8c00;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" class="result" id="result" readonly>
+        <br>
+        <button class="button">7</button>
+        <button class="button">8</button>
+        <button class="button">9</button>
+        <button class="button operator">/</button>
+        <br>
+        <button class="button">4</button>
+        <button class="button">5</button>
+        <button class="button">6</button>
+        <button class="button operator">*</button>
+        <br>
+        <button class="button">1</button>
+        <button class="button">2</button>
+        <button class="button">3</button>
+        <button class="button operator">-</button>
+        <br>
+        <button class="button">0</button>
+        <button class="button">.</button>
+        <button class="button operator">+</button>
+        <button class="button operator">=</button>
+        <br>
+        <button class="button operator">C</button>
+    </div>
+
+    <script>
+        const result = document.getElementById('result');
+        const buttons = Array.from(document.getElementsByClassName('button'));
+
+        buttons.map(button => {
+            button.addEventListener('click', (e) => {
+                if (e.target.innerText === 'C') {
+                    result.value = '';
+                } else if (e.target.innerText === '=') {
+                    try {
+                        result.value = eval(result.value);
+                    } catch {
+                        result.value = 'Error';
+                    }
+                } else {
+                    result.value += e.target.innerText;
+                }
+            });
+        });
+    </script>
+</body>
+</html
